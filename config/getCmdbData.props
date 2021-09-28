@@ -1,0 +1,4 @@
+readCisFromFile=0
+readRelationshipsFromFile=0
+saveCisToFile=1
+saveRelationshipsToFile=1

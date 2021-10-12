@@ -142,7 +142,7 @@ def loadPrimaryCapabilityFilter(filepath, sep=",", comment_char='#'):
    #
    ################################################################################
 
-   print "opening Primary Capability filter file at " + filepath
+   #print "opening Primary Capability filter file at " + filepath
 
    lineNum = 0
 
@@ -162,7 +162,7 @@ def loadPrimaryCapabilityMapping(filepath, sep=",", comment_char='#'):
    #
    ################################################################################
 
-   print "opening PrimaryCapability mapping file at " + filepath
+   #print "opening PrimaryCapability mapping file at " + filepath
 
    lineNum = 0
 
@@ -176,7 +176,7 @@ def loadPrimaryCapabilityMapping(filepath, sep=",", comment_char='#'):
             else:
                primaryCapabilityMappingDict[values[0].replace('"', '')] = values[1].replace('"', '')
 
-   print primaryCapabilityMappingDict
+   #print primaryCapabilityMappingDict
 
 def loadRelationshipMapping(filepath, sep=",", comment_char='#'):
 
@@ -1363,24 +1363,23 @@ if __name__ == '__main__':
    if(os.path.isfile(mediatorHome  + "/config/assetlifecyclestatus-filter.conf")):
       loadAssetLifecycleStatusFilter(mediatorHome + "/config/assetlifecyclestatus-filter.conf")
    else:
-      print "No AssetLifecycleStatus filter file available at " + mediatorHome + "/config/assetlifecyclestatus-filter.conf. Will load objects with any lifecycle status."
+      print "INFO: No AssetLifecycleStatus filter file available at " + mediatorHome + "/config/assetlifecyclestatus-filter.conf. Will load objects with any lifecycle status."
 
    if(os.path.isfile(mediatorHome  + "/config/primarycapability-filter.conf")):
       loadPrimaryCapabilityFilter(mediatorHome + "/config/primarycapability-filter.conf")
    else:
-      print "FATAL: no primary capability filter file available at " + mediatorHome + "/config/primarycapability-filter.conf"
-      exit()
+      print "INFO: No primary capability filter file available at " + mediatorHome + "/config/primarycapability-filter.conf. Will not filter out objects based on primary capability"
 
    if(os.path.isfile(mediatorHome  + "/config/getCmdbData.props")):
       configVars = loadProperties(mediatorHome + "/config/getCmdbData.props")
-      sys.stderr.write(str(configVars))
+      #sys.stderr.write(str(configVars))
       if 'readCisFromFile' in configVars.keys():
          global readCisFromFile
          readCisFromFile = configVars['readCisFromFile']
          if(readCisFromFile == "1"):
-            sys.stderr.write("will read CIs from file if available")
+            sys.stderr.write("will read CIs from file if available\n")
          else:
-            sys.stderr.write("will read CIs from ServiceNow REST API")
+            sys.stderr.write("will read CIs from ServiceNow REST API\n")
       else:
          sys.stderr.write("readCisFromFile property not set, defaulting to 0, read from ServiceNow REST API")
          readCisFromFile = 0
@@ -1397,9 +1396,6 @@ if __name__ == '__main__':
    else:
       print "FATAL: unable to find the properties file " + mediatorHome + "/config/getCmdbData.props"
       exit()
-
-#   print("readCisFromFile is: " + str(readCisFromFile))
-#   print("readRelationshipsFromFile is: " + str(readRelationshipsFromFile))
 
 
 # BEGINS HERE

@@ -27,17 +27,6 @@ To use:
 
 Some items to note:
 
--- Remedy may throttle queries that are performed against its REST API. I have
-   done a fair amount of testing with this to get a balance that is both performant,
-   but does not cause Remedy to say "you're taking too much". This currently is
-   controlled by the 'limit' variable in both the getCiData and getCiRelationships
-   functions. It is currently set to 2500 for CI queries and 50000 for relationship
-   queries. It is likely possible that the CI query limit could be upped to close to
-   10000, but for our needs the CI count and performance was not a limiting factor.
-   The relationship queries, in our testing, had an upper bound of around 65000.
-   Either of these limits may need to be tweaked depending on your service level, if
-   you start to see errors during the REST calls.
-
 -- There are functions available that will send objects directly to the ASM REST
    interface rather than writing out to a file. This may be implemented in the future,
    but if you would like to play with it now, you could comment out the sections that
